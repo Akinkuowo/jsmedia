@@ -29,17 +29,19 @@ const Banner = () => {
         style={{
             backgroundSize: "cover",
             backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie?.backdrop_path})`,
-            backgroundPosition: "center top"
+            backgroundPosition: "center center"
         }}
     >
         <div className='banner_contents'>
             <h1 className='banner_title'>{movie?.title || movie?.name || movie?.original_name}</h1>
             <diV className="banner_buttons">
+                <h1 className='banner_description'>{truncate(movie?.overview, 150)}</h1>
                 <button className='banner_button'>PLAY </button>
                 <button className='banner_button'>MY LIST </button>
-                <h1 className='banner_description'>{truncate(movie?.overview, 150)}</h1>
             </diV>
         </div>
+
+        <div className='banner_fade_button' />
     </header>
   )
 }

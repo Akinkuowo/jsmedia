@@ -2,12 +2,15 @@
   color: #fff;
   object-fit: contain;
   height: 440px;
+  outline: 2px solid #222;
+
+  /* padding-top: 140; */
 }
 
 .banner_contents {
   margin-left: 30px;
-  padding-top: 140;
-  height: 190;
+  padding-top: 120px;
+  height: 190px;
 }
 
 .banner_title {
@@ -23,4 +26,32 @@
   font-size: 0.8rem;
   max-width: 360px;
   height: 80px;
+}
+
+.banner_button {
+  cursor: pointer;
+  color: #fff;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  border-radius: 0.3vw;
+  padding: 0.5rem 2rem;
+  margin-right: 1rem;
+  background: rgba(51, 51, 51, 0.5);
+}
+
+.banner_button:hover {
+  color: #000;
+  background: #e6e6e6;
+  transition: all 0.2s;
+}
+
+.banner_fade_button {
+  height: 8.1rem;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(67, 67, 67, 0.67),
+    #111
+  );
 }

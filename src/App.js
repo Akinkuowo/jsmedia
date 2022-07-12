@@ -3,14 +3,15 @@ import Row from './components/Row/row';
 import request from './ApiRequest/requests';
 import './App.css';
 import Banner from './components/Banner/banner';
+import Nav from './components/Navigation/nav';
 
 function App() {
   return (
     <div className="App">
-      
+      <Nav />
       <Banner />
       <div>
-        <Row isLargeRow title="NEXFLIX ORIGINALS" fetchUrl={request.fetchNetflixOriginals}/>
+        <Row isLargeRow title="New Movies" fetchUrl={request.fetchNetflixOriginals}/>
         <Row title="Trending Now" fetchUrl={request.fetchTreanding}/>
         <Row title="Top Rated" fetchUrl={request.fetchTopRated}/>
         <Row title="Action Movies" fetchUrl={request.fetchActionMovies}/>

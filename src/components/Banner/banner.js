@@ -3,11 +3,14 @@ import React, { useEffect, useState } from 'react'
 /* Import axios code from axios.js in ApiRequest Folder */
 import axios from "../../ApiRequest/axios"
 import requests from '../../ApiRequest/requests';
+import YouTube from "react-youtube"
+import movieTrailer from "movie-trailer"
 
 import "./Banner.css"
 
 const Banner = () => {
     const [movie, setMovie] = useState([])
+    const [trailerUrl, setTrailerUrl] = useState("")
 
     useEffect(()=> {
         async function fetchBanner(){
@@ -18,7 +21,28 @@ const Banner = () => {
         }
         fetchBanner()
     }, [])
-    console.log(movie)
+    
+    const opts = {
+        height: "390",
+        width: "100%",
+        playerVals: {
+            autoplay: 1,
+        }
+    }
+
+    const handleClick = (movie) => {
+        if(trailerUrl){
+            setTrailerUrl('')
+        }else{
+            movieTrailer(movie?.title  || movie?.name || movie?.original_name || "")
+            .then((url) => {
+                
+                const urlParams = new URLSearchParams(new URL(url).search)
+                setTrailerUrl(urlParams.get("v"))
+            })
+            .catch(error => console.log(error))
+        }
+    }
 
     const truncate = (str, n)=> {
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
@@ -36,12 +60,15 @@ const Banner = () => {
             <h1 className='banner_title'>{movie?.title || movie?.name || movie?.original_name}</h1>
             <diV className="banner_buttons">
                 <h1 className='banner_description'>{truncate(movie?.overview, 150)}</h1>
-                <button className='banner_button'>PLAY </button>
+                <button 
+                onClick={()=> handleClick(movie)}
+                className='banner_button'>PLAY </button>
                 <button className='banner_button'>MY LIST </button>
             </diV>
         </div>
 
-        <div className='banner_fade_button' />
+        <div className='banner_fade_button' ></div>
+        {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} /> }
     </header>
   )
 }
